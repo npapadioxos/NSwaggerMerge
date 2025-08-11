@@ -1,4 +1,4 @@
-namespace Noise.SwaggerMerge.Merge.Exceptions;
+namespace NSwaggerMerge.Merge.Exceptions;
 
 /// <summary>
 /// Defines an exception thrown when an error occurs with the Swagger merge tool.

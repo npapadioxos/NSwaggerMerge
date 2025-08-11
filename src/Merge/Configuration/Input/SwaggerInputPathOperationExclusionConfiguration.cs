@@ -1,6 +1,6 @@
-namespace Noise.SwaggerMerge.Merge.Configuration.Input;
-
 using Newtonsoft.Json.Linq;
+
+namespace NSwaggerMerge.Merge.Configuration.Input;
 
 /// <summary>
 /// Defines the configuration for defining path operation exclusions based on a defined property match.

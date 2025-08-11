@@ -1,4 +1,4 @@
-namespace Noise.SwaggerMerge.Serialization;
+namespace NSwaggerMerge.Serialization;
 
 using Newtonsoft.Json;
 

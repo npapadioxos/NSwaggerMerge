@@ -1,4 +1,4 @@
-namespace Noise.SwaggerMerge.Merge.Configuration.Input;
+namespace NSwaggerMerge.Merge.Configuration.Input;
 
 /// <summary>
 /// Defines the configuration for modifying a Swagger document's description.

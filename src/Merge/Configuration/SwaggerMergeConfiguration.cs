@@ -1,7 +1,7 @@
-namespace Noise.SwaggerMerge.Merge.Configuration;
+using NSwaggerMerge.Merge.Configuration.Input;
+using NSwaggerMerge.Merge.Configuration.Output;
 
-using Noise.SwaggerMerge.Merge.Configuration.Input;
-using Noise.SwaggerMerge.Merge.Configuration.Output;
+namespace NSwaggerMerge.Merge.Configuration;
 
 /// <summary>
 /// Defines the configuration for merging Swagger documents.

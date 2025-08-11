@@ -1,4 +1,4 @@
-namespace Noise.SwaggerMerge.Swagger;
+namespace NSwaggerMerge.Swagger;
 
 using System.Globalization;
 using System.Runtime.Serialization;

@@ -1,4 +1,4 @@
-namespace Noise.SwaggerMerge.Merge.Configuration.Output;
+namespace NSwaggerMerge.Merge.Configuration.Output;
 
 using Swagger;
 

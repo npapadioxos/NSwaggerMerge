@@ -1,8 +1,8 @@
-namespace Noise.SwaggerMerge.Merge;
+namespace NSwaggerMerge.Merge;
 
-using Noise.SwaggerMerge.Merge.Configuration;
-using Noise.SwaggerMerge.Serialization;
-using Noise.SwaggerMerge.Swagger;
+using NSwaggerMerge.Merge.Configuration;
+using NSwaggerMerge.Serialization;
+using NSwaggerMerge.Swagger;
 
 public static partial class SwaggerMerger
 {
@@ -29,18 +29,7 @@ public static partial class SwaggerMerger
     private static void FinalizeOutput(SwaggerDocument? output, string outputTitle, SwaggerMergeConfiguration config)
     {
         if (output == null)
-        {
             return;
-        }
-
-        // Where exclusions have been specified, remove any definitions from the output where they are no longer valid
-        if (config.Inputs.Any(x => x.Path is { OperationExclusions: { } } && x.Path.OperationExclusions.Any()))
-        {
-            if (output.Definitions != null)
-            {
-                output.Definitions = GetUsedDefinitions(output);
-            }
-        }
 
         output.Info.Title = outputTitle;
         output.Info.Version = config.Output.Info?.Version ?? "1.0";

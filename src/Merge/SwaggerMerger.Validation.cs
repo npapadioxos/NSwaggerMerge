@@ -1,7 +1,7 @@
-namespace Noise.SwaggerMerge.Merge;
+namespace NSwaggerMerge.Merge;
 
 using Exceptions;
-using Noise.SwaggerMerge.Merge.Configuration;
+using NSwaggerMerge.Merge.Configuration;
 
 public static partial class SwaggerMerger
 {
