@@ -1,8 +1,8 @@
-namespace NSwaggerMerge.Merge;
-
 using MADE.Collections;
 using NSwaggerMerge.Merge.Configuration.Input;
-using Swagger;
+using NSwaggerMerge.Swagger;
+
+namespace NSwaggerMerge.Merge;
 
 public static partial class SwaggerMerger
 {

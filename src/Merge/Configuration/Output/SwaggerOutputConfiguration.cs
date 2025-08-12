@@ -1,6 +1,6 @@
-namespace NSwaggerMerge.Merge.Configuration.Output;
+using NSwaggerMerge.Swagger;
 
-using Swagger;
+namespace NSwaggerMerge.Merge.Configuration.Output;
 
 /// <summary>
 /// Defines the configuration for a Swagger document output.
@@ -30,12 +30,12 @@ public class SwaggerOutputConfiguration
     /// <summary>
     /// Gets or sets the security scheme to be defined for the output.
     /// </summary>
-    public SwaggerDocumentSecurityDefinitions? SecurityDefinitions { get; set; } = new();
+    public SwaggerDocumentSecurityDefinitions? SecurityDefinitions { get; set; } = [];
 
     /// <summary>
     /// Gets or sets the security options available in the output.
     /// </summary>
-    public List<SwaggerDocumentSecurityRequirement>? Security { get; set; } = new();
+    public List<SwaggerDocumentSecurityRequirement>? Security { get; set; } = [];
 
     /// <summary>
     /// Gets or sets the configuration for the document's description.

@@ -1,7 +1,7 @@
-namespace NSwaggerMerge.Merge;
-
-using Exceptions;
+using NSwaggerMerge.Merge.Exceptions;
 using NSwaggerMerge.Merge.Configuration;
+
+namespace NSwaggerMerge.Merge;
 
 public static partial class SwaggerMerger
 {
@@ -15,11 +15,6 @@ public static partial class SwaggerMerger
         if (config.Inputs.Any(input => string.IsNullOrWhiteSpace(input.File)))
         {
             throw new SwaggerMergeException("All input file paths must be specified");
-        }
-
-        if (string.IsNullOrWhiteSpace(config.Output.File))
-        {
-            throw new SwaggerMergeException("The output file path must be specified");
         }
     }
 }

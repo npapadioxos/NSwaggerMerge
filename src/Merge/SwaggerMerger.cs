@@ -1,20 +1,24 @@
-namespace NSwaggerMerge.Merge;
-
 using NSwaggerMerge.Merge.Configuration;
 using NSwaggerMerge.Serialization;
 using NSwaggerMerge.Swagger;
+
+namespace NSwaggerMerge.Merge;
 
 public static partial class SwaggerMerger
 {
     public static async Task<string> MergeAsync(SwaggerMergeConfiguration config)
     {
-        var output = new SwaggerDocument { Host = config.Output.Host, BasePath = config.Output.BasePath };
+        SwaggerDocument output = new()
+        {
+            Host = config.Output.Host,
+            BasePath = config.Output.BasePath
+        };
 
         var outputTitle = config.Output.Info?.Title ?? string.Empty;
 
         foreach (var inputConfig in config.Inputs)
         {
-            SwaggerDocument input = await JsonFile.LoadRemoteFileAsync<SwaggerDocument>(inputConfig.File);
+            var input = await JsonFile.LoadRemoteFileAsync<SwaggerDocument>(inputConfig.File);
 
             outputTitle = UpdateOutputTitleFromInput(outputTitle, inputConfig, input);
             UpdateOutputPathsFromInput(output, inputConfig, input);
