@@ -1,26 +1,19 @@
 namespace NSwaggerMerge.Merge;
 
 using MADE.Collections;
-using Swagger;
 using NSwaggerMerge.Merge.Configuration.Input;
+using Swagger;
 
 public static partial class SwaggerMerger
 {
-    private static void UpdateOutputPathsFromInput(
-        SwaggerDocument? output,
-        SwaggerInputConfiguration inputConfig,
-        SwaggerDocument input)
+    private static void UpdateOutputPathsFromInput(SwaggerDocument? output, SwaggerInputConfiguration inputConfig, SwaggerDocument input)
     {
         if (input.Paths == null)
-        {
             return;
-        }
 
         var pathsToProcess = DetermineOutputPathsFromInput(input, inputConfig);
         if (pathsToProcess == null)
-        {
             return;
-        }
 
         foreach (var path in pathsToProcess)
         {
@@ -32,59 +25,39 @@ public static partial class SwaggerMerger
         }
     }
 
-    private static string UpdateOutputTitleFromInput(
-        string outputTitle,
-        SwaggerInputConfiguration inputConfig,
-        SwaggerDocument input)
+    private static string UpdateOutputTitleFromInput(string outputTitle, SwaggerInputConfiguration inputConfig, SwaggerDocument input)
     {
         if (inputConfig.Info is not { Append: true })
-        {
-            // Input title is not to be appended to the output title.
-            return outputTitle;
-        }
+            return outputTitle; // Input title is not to be appended to the output title.
 
         if (inputConfig.Info.Title != null && !string.IsNullOrWhiteSpace(inputConfig.Info.Title))
-        {
             outputTitle += " " + inputConfig.Info.Title;
-        }
         else
-        {
             outputTitle += input.Info.Title;
-        }
 
         return outputTitle;
     }
 
-    private static void UpdateOutputDefinitionsFromInput(
-        SwaggerDocument? output,
-        SwaggerDocument input)
+    private static void UpdateOutputDefinitionsFromInput(SwaggerDocument? output, SwaggerDocument input)
     {
         if (input.Components == null || output?.Components == null)
-        {
             return;
-        }
 
         foreach (var definition in input.Components.Schemes)
-        {
             output.Components.Schemes.AddOrUpdate(definition.Key, definition.Value);
-        }
     }
 
     private static SwaggerDocumentPaths? DetermineOutputPathsFromInput(SwaggerDocument input, SwaggerInputConfiguration inputConfig)
     {
         if (input.Paths == null)
-        {
             return null;
-        }
 
         var swaggerDocumentPaths = input.Paths;
 
         foreach (var (path, pathOperations) in input.Paths)
         {
             if (inputConfig.Path is not { OperationExclusions: { } } || !inputConfig.Path.OperationExclusions.Any())
-            {
                 continue;
-            }
 
             foreach (var (method, operation) in pathOperations)
             {
@@ -99,13 +72,9 @@ public static partial class SwaggerMerger
             }
 
             if (!pathOperations.Any())
-            {
                 swaggerDocumentPaths.Remove(path);
-            }
             else
-            {
                 swaggerDocumentPaths[path] = pathOperations;
-            }
         }
 
         return swaggerDocumentPaths;
@@ -114,9 +83,7 @@ public static partial class SwaggerMerger
     private static string StripStartFromPath(string path, SwaggerInputConfiguration inputConfig)
     {
         if (inputConfig.Path?.StripStart != null && !string.IsNullOrWhiteSpace(inputConfig.Path.StripStart))
-        {
             path = path.Substring(inputConfig.Path.StripStart.Length);
-        }
 
         return path;
     }
@@ -124,9 +91,7 @@ public static partial class SwaggerMerger
     private static string PrependToPath(string path, SwaggerInputConfiguration inputConfig)
     {
         if (inputConfig.Path?.Prepend != null && !string.IsNullOrWhiteSpace(inputConfig.Path.Prepend))
-        {
             path = inputConfig.Path.Prepend + path;
-        }
 
         return path;
     }

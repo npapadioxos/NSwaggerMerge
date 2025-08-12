@@ -32,9 +32,9 @@ public static partial class SwaggerMerger
             return;
 
         output.Info.Title = outputTitle;
+        output.Schemes = config.Output.Schemes ?? [];
+        output.Security = config.Output.Security ?? [];
         output.Info.Version = config.Output.Info?.Version ?? "1.0";
-        output.Schemes = config.Output.Schemes ?? new List<string>();
-        output.SecurityDefinitions = config.Output.SecurityDefinitions ?? new SwaggerDocumentSecurityDefinitions();
-        output.Security = config.Output.Security ?? new List<SwaggerDocumentSecurityRequirement>();
+        output.SecurityDefinitions = config.Output.SecurityDefinitions ?? [];
     }
 }

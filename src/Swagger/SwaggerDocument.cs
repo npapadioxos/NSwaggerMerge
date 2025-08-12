@@ -1,11 +1,11 @@
 namespace NSwaggerMerge.Swagger;
 
-using System.Globalization;
-using System.Runtime.Serialization;
 using MADE.Collections;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Serialization;
+using System.Globalization;
+using System.Runtime.Serialization;
 
 /// <summary>
 /// Defines the detail of a Swagger document.
@@ -98,15 +98,13 @@ public class SwaggerDocument
     private static SwaggerDocumentProperty ToSwaggerDocumentProperty(JToken? jsonObject)
     {
         if (jsonObject == null)
-        {
-            return new SwaggerDocumentProperty();
-        }
+            return new();
 
-        using StringWriter sw = new StringWriter(CultureInfo.InvariantCulture);
-        JsonTextWriter jw = new JsonTextWriter(sw);
+        using StringWriter sw = new(CultureInfo.InvariantCulture);
+        JsonTextWriter jw = new(sw);
         jsonObject.WriteTo(jw);
         var json = sw.ToString();
-        return JsonConvert.DeserializeObject<SwaggerDocumentProperty>(json, JsonFile.Settings) ?? new SwaggerDocumentProperty();
+        return JsonConvert.DeserializeObject<SwaggerDocumentProperty>(json, JsonFile.Settings) ?? new();
     }
 
     [OnDeserialized]
@@ -115,15 +113,13 @@ public class SwaggerDocument
         var objectTokens = JTokenProperties?.Where(x => x.Value is JObject).ToList();
 
         if (objectTokens == null || !objectTokens.Any())
-        {
             return;
-        }
 
-        this.AdditionalProperties = objectTokens.ToDictionary(
+        AdditionalProperties = objectTokens.ToDictionary(
             x => x.Key,
             x => ToSwaggerDocumentProperty(x.Value as JObject));
 
-        this.JTokenProperties.RemoveRange(objectTokens);
+        JTokenProperties.RemoveRange(objectTokens);
     }
 
 
@@ -135,9 +131,7 @@ public class SwaggerDocument
             x => JToken.FromObject(x.Value));
 
         if (additionalProperties == null)
-        {
             return;
-        }
 
         JTokenProperties.AddRange(additionalProperties);
     }
@@ -146,16 +140,12 @@ public class SwaggerDocument
 /// <summary>
 /// Defines the required security schemes to execute an operation.
 /// </summary>
-public class SwaggerDocumentSecurityRequirement : Dictionary<string, List<string>>
-{
-}
+public class SwaggerDocumentSecurityRequirement : Dictionary<string, List<string>>;
 
 /// <summary>
 /// Defines the details of an object to hold security schemes to be reused across the specification.
 /// </summary>
-public class SwaggerDocumentSecurityDefinitions : Dictionary<string, SwaggerDocumentSecurityScheme>
-{
-}
+public class SwaggerDocumentSecurityDefinitions : Dictionary<string, SwaggerDocumentSecurityScheme>;
 
 /// <summary>
 /// Defines the security scheme that can be used by the operations.
@@ -221,15 +211,13 @@ public class SwaggerDocumentSecurityScheme
     private static SwaggerDocumentProperty ToSwaggerDocumentProperty(JToken? jsonObject)
     {
         if (jsonObject == null)
-        {
-            return new SwaggerDocumentProperty();
-        }
+            return new();
 
-        using StringWriter sw = new StringWriter(CultureInfo.InvariantCulture);
-        JsonTextWriter jw = new JsonTextWriter(sw);
+        using StringWriter sw = new(CultureInfo.InvariantCulture);
+        JsonTextWriter jw = new(sw);
         jsonObject.WriteTo(jw);
         var json = sw.ToString();
-        return JsonConvert.DeserializeObject<SwaggerDocumentProperty>(json, JsonFile.Settings) ?? new SwaggerDocumentProperty();
+        return JsonConvert.DeserializeObject<SwaggerDocumentProperty>(json, JsonFile.Settings) ?? new();
     }
 
     [OnDeserialized]
@@ -238,15 +226,13 @@ public class SwaggerDocumentSecurityScheme
         var objectTokens = JTokenProperties?.Where(x => x.Value is JObject).ToList();
 
         if (objectTokens == null || !objectTokens.Any())
-        {
             return;
-        }
 
-        this.AdditionalProperties = objectTokens.ToDictionary(
+        AdditionalProperties = objectTokens.ToDictionary(
             x => x.Key,
             x => ToSwaggerDocumentProperty(x.Value as JObject));
 
-        this.JTokenProperties.RemoveRange(objectTokens);
+        JTokenProperties.RemoveRange(objectTokens);
     }
 
 
@@ -258,9 +244,7 @@ public class SwaggerDocumentSecurityScheme
             x => JToken.FromObject(x.Value));
 
         if (additionalProperties == null)
-        {
             return;
-        }
 
         JTokenProperties.AddRange(additionalProperties);
     }
@@ -269,9 +253,7 @@ public class SwaggerDocumentSecurityScheme
 /// <summary>
 /// Defines the list of available scopes for an OAuth2 security scheme.
 /// </summary>
-public class SwaggerDocumentScopes : Dictionary<string, object>
-{
-}
+public class SwaggerDocumentScopes : Dictionary<string, object>;
 
 /// <summary>
 /// Defines the details of an object to hold data types that can be consumed and produced by operations.
@@ -309,34 +291,33 @@ public class SwaggerDocumentInfo
 public class SwaggerDocumentComponents
 {
     [JsonProperty("schemas", NullValueHandling = NullValueHandling.Ignore)]
-    public SwaggerDocumentSchemes? Schemes { get; set; } = new();
+    public SwaggerDocumentSchemes? Schemes { get; set; } = [];
 }
 
-public class SwaggerDocumentSchemes : Dictionary<string, SwaggerDocumentSchemeItem>
-{
+public class SwaggerDocumentSchemes : Dictionary<string, SwaggerDocumentSchemeItem>;
 
-}
 public class SwaggerDocumentSchemeItem
 {
     [JsonProperty("enum", NullValueHandling = NullValueHandling.Ignore)]
-    public int[]? Enum{ get;set; }
+    public int[]? Enum { get; set; }
+
     [JsonProperty("format", NullValueHandling = NullValueHandling.Ignore)]
     public string? Format { get; set; }
+
     [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
     public string? Type { get; set; }
+
     [JsonProperty("additionalProperties", NullValueHandling = NullValueHandling.Ignore)]
     public bool? AdditionalProperties { get; set; }
+
     [JsonProperty("properties", NullValueHandling = NullValueHandling.Ignore)]
     public SwaggerDocumentProperties? Properties { get; set; }
+
     [JsonProperty("required", NullValueHandling = NullValueHandling.Ignore)]
     public string[]? Required { get; set; }
-} 
-
-public class SwaggerDocumentProperties : Dictionary<string, SwaggerDocumentPropertiesItem>
-{
-
 }
 
+public class SwaggerDocumentProperties : Dictionary<string, SwaggerDocumentPropertiesItem>;
 
 public class SwaggerDocumentPropertiesItem
 {
@@ -346,16 +327,12 @@ public class SwaggerDocumentPropertiesItem
 /// <summary>
 /// Defines the relative paths to the individual endpoints.
 /// </summary>
-public class SwaggerDocumentPaths : Dictionary<string, SwaggerDocumentPathItem>
-{
-}
+public class SwaggerDocumentPaths : Dictionary<string, SwaggerDocumentPathItem>;
 
 /// <summary>
 /// Defines the operations available on a single path.
 /// </summary>
-public class SwaggerDocumentPathItem : Dictionary<string, SwaggerDocumentOperation>
-{
-}
+public class SwaggerDocumentPathItem : Dictionary<string, SwaggerDocumentOperation>;
 
 /// <summary>
 /// Defines the detail of a single API operation on a path.
@@ -366,7 +343,7 @@ public class SwaggerDocumentOperation
     /// Gets or sets a list of tags for API documentation control.
     /// </summary>
     [JsonProperty("tags", NullValueHandling = NullValueHandling.Ignore)]
-    public List<string> Tags { get; set; } = new();
+    public List<string> Tags { get; set; } = [];
 
     /// <summary>
     /// Gets or sets a short summary of what the operation does.
@@ -427,15 +404,13 @@ public class SwaggerDocumentOperation
     private static SwaggerDocumentProperty ToSwaggerDocumentProperty(JToken? jsonObject)
     {
         if (jsonObject == null)
-        {
-            return new SwaggerDocumentProperty();
-        }
+            return new();
 
-        using StringWriter sw = new StringWriter(CultureInfo.InvariantCulture);
-        JsonTextWriter jw = new JsonTextWriter(sw);
+        using StringWriter sw = new(CultureInfo.InvariantCulture);
+        JsonTextWriter jw = new(sw);
         jsonObject.WriteTo(jw);
         var json = sw.ToString();
-        return JsonConvert.DeserializeObject<SwaggerDocumentProperty>(json, JsonFile.Settings) ?? new SwaggerDocumentProperty();
+        return JsonConvert.DeserializeObject<SwaggerDocumentProperty>(json, JsonFile.Settings) ?? new();
     }
 
     [OnDeserialized]
@@ -448,11 +423,11 @@ public class SwaggerDocumentOperation
             return;
         }
 
-        this.AdditionalProperties = objectTokens.ToDictionary(
+        AdditionalProperties = objectTokens.ToDictionary(
             x => x.Key,
             x => ToSwaggerDocumentProperty(x.Value as JObject));
 
-        this.JTokenProperties.RemoveRange(objectTokens);
+        JTokenProperties.RemoveRange(objectTokens);
     }
 
 
@@ -464,9 +439,7 @@ public class SwaggerDocumentOperation
             x => JToken.FromObject(x.Value));
 
         if (additionalProperties == null)
-        {
             return;
-        }
 
         JTokenProperties.AddRange(additionalProperties);
     }
@@ -512,15 +485,13 @@ public class SwaggerDocumentProperty
     private static SwaggerDocumentProperty ToSwaggerDocumentProperty(JToken? jsonObject)
     {
         if (jsonObject == null)
-        {
-            return new SwaggerDocumentProperty();
-        }
+            return new();
 
-        using StringWriter sw = new StringWriter(CultureInfo.InvariantCulture);
-        JsonTextWriter jw = new JsonTextWriter(sw);
+        using StringWriter sw = new(CultureInfo.InvariantCulture);
+        JsonTextWriter jw = new(sw);
         jsonObject.WriteTo(jw);
         var json = sw.ToString();
-        return JsonConvert.DeserializeObject<SwaggerDocumentProperty>(json, JsonFile.Settings) ?? new SwaggerDocumentProperty();
+        return JsonConvert.DeserializeObject<SwaggerDocumentProperty>(json, JsonFile.Settings) ?? new();
     }
 
     [OnDeserialized]
@@ -529,15 +500,13 @@ public class SwaggerDocumentProperty
         var objectTokens = JTokenProperties?.Where(x => x.Value is JObject).ToList();
 
         if (objectTokens == null || !objectTokens.Any())
-        {
             return;
-        }
 
-        this.AdditionalProperties = objectTokens.ToDictionary(
+        AdditionalProperties = objectTokens.ToDictionary(
             x => x.Key,
             x => ToSwaggerDocumentProperty(x.Value as JObject));
 
-        this.JTokenProperties.RemoveRange(objectTokens);
+        JTokenProperties.RemoveRange(objectTokens);
     }
 
     [OnSerializing]
@@ -548,11 +517,8 @@ public class SwaggerDocumentProperty
             x => JToken.FromObject(x.Value));
 
         if (additionalProperties == null)
-        {
             return;
-        }
 
         JTokenProperties.AddRange(additionalProperties);
     }
 }
-

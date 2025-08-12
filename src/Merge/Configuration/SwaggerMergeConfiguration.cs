@@ -11,7 +11,7 @@ public class SwaggerMergeConfiguration
     /// <summary>
     /// Gets or sets the inputs for merging.
     /// </summary>
-    public IEnumerable<SwaggerInputConfiguration> Inputs { get; set; } = new List<SwaggerInputConfiguration>();
+    public IEnumerable<SwaggerInputConfiguration> Inputs { get; set; } = [];
 
     /// <summary>
     /// Gets or sets the output merged Swagger document.

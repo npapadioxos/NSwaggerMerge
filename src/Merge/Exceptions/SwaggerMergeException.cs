@@ -9,8 +9,7 @@ public class SwaggerMergeException : Exception
     /// Initializes a new instance of the <see cref="SwaggerMergeException"/> class with a message.
     /// </summary>
     /// <param name="message">The detail of the exception thrown.</param>
-    public SwaggerMergeException(string message)
-        : base(message)
+    public SwaggerMergeException(string message) : base(message)
     {
     }
 
@@ -19,8 +18,7 @@ public class SwaggerMergeException : Exception
     /// </summary>
     /// <param name="message">The detail of the exception thrown.</param>
     /// <param name="innerException">The exception that caused this exception to be thrown.</param>
-    public SwaggerMergeException(string message, Exception innerException)
-        : base(message, innerException)
+    public SwaggerMergeException(string message, Exception innerException) : base(message, innerException)
     {
     }
 }
