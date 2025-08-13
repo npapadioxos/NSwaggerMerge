@@ -102,7 +102,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 
 The end result looks like this:
 
-![alt text](assets/img/readme-result-endpoint.png)
+![Merge Swagger Endpoint](https://github.com/npapadioxos/NSwaggerMerge/raw/master/assets/img/readme-result-endpoint.png)
 
 Upon sending a request to this endpoint, NSwaggerMerge will merge into a single doc all OpenApi docs from services configured in appsettings (services must be running).
 
