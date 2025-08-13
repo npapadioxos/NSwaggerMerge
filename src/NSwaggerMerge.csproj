@@ -9,7 +9,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
-    <Version>0.5.0</Version>
+    <Version>0.5.1</Version>
     <Copyright>Nick Papadiochos</Copyright>
     <Company>Nick Papadiochos</Company>
     <Description>NSwaggerMerge - Create unified swagger doc aggregated from multiple microservices.</Description>
@@ -20,6 +20,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/npapadioxos/NSwaggerMerge.git</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/npapadioxos/NSwaggerMerge</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,8 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MADE.Collections" Version="1.6.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="MADE.Collections" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
