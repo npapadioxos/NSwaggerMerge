@@ -19,10 +19,15 @@
     <IncludeSymbols>True</IncludeSymbols>
     <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/npapadioxos/NSwaggerMerge.git</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\assets\img\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
