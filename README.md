@@ -1,43 +1,114 @@
-# Noise.SwaggerMerge
-Merge openapi3.0 from different services under the microservice architecture
+# NSwaggerMerge
+Merge OpenApi 3.0 documents from different services under the microservice architecture.
 
-example
+#### Motivation
+
+In a Microservices architecture, using an API Gateway, the various services are hidden behind the gateway and each individual swagger doc is not exposed.
+Front-end devs using an OpenApi codegen tool, need a single unified OpenApi doc for all services behind the gateway.
+
+#### Example appsettings.json configuration
+
 ```json
-  {
-  "SwaggerConfig": {
-    //"Host": "localhost:8080",
+{
+  ...
+  "SwaggerOutputConfig-v1": {
     "Info": {
-      "Title": "VTuberMusic Noise Api",
+      "Title": "Admin Portal API",
       "Version": "1.0"
     },
     "Schemes": [
-      "http",
       "https"
     ],
-    "SecurityDefinitions": {
-      "ApiKeyAuth": {
-        "Type": "apiKey",
-        "In": "header",
-        "Name": "Authorization"
-      }
-    },
-    "Security": [
-      {
-        "ApiKeyAuth": []
-      }
-    ]
+    "Security": [ {} ]
   },
-  "ServiceSwaggerEndpoint": [
+  "SwaggerInputConfig-v1": [
     {
-      "Name": "file Api",
-      "File": "http://localhost:5220/file/v1/swagger.json",
-      "Path": "/file/v1/swagger.json"
+      "File": "https://localhost:5001/swagger/v1/swagger.json"
     },
     {
-      "Name": "identity Api",
-      "File": "http://localhost:5068/identity/v1/swagger.json",
-      "Path": "/identity/v1/swagger.json"
+      "File": "https://localhost:5002/swagger/v1/swagger.json"
+    },
+    {
+      "File": "https://localhost:5003/swagger/v1/swagger.json"
+    },
+    {
+      "File": "https://localhost:5004/swagger/v1/swagger.json"
+    },
+    {
+      "File": "https://localhost:5005/swagger/v1/swagger.json"
     }
   ]
+  ...
 }
 ```
+
+#### Registations
+
+```cs
+...
+builder.Services.RegisterCommonServices(configuration);
+
+var swaggerInputConfig = builder.Configuration
+    .GetSection("SwaggerInputConfig-v1")
+    .Get<SwaggerInputConfiguration[]>();
+
+builder.Services.AddSingleton(swaggerInputConfig);
+
+builder.Services.AddOptions<SwaggerOutputConfiguration>()
+    .BindConfiguration("SwaggerOutputConfig-v1")
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+...
+```
+
+#### How To Use
+
+```cs
+...
+if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
+{
+    app.MapOpenApi();
+
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        options.DocumentTitle = "Admin Portal API";
+        options.SwaggerEndpoint("/admin-portal-api/v1/swagger.json", "Admin Portal API v1");
+
+        options.RoutePrefix = string.Empty;
+        options.EnableTryItOutByDefault();
+        options.DisplayRequestDuration();
+        options.ShowCommonExtensions();
+        options.ShowExtensions();
+    });
+
+    app.MapGet("/admin-portal-api/v1/swagger.json", async (SwaggerInputConfiguration[] swaggerInputConfig, IOptions<SwaggerOutputConfiguration> swaggerOutputOptions) =>
+    {
+        SwaggerOutputConfiguration swaggerOutputConfig = swaggerOutputOptions.Value;
+
+        SwaggerMergeConfiguration config = new()
+        {
+            Inputs = swaggerInputConfig,
+            Output = swaggerOutputConfig
+        };
+
+        SwaggerMerger.ValidateConfiguration(config);
+
+        return await SwaggerMerger.MergeAsync(config);
+    }).AllowAnonymous().Produces<ActionResult>(contentType: System.Net.Mime.MediaTypeNames.Application.Json);
+}
+...
+```
+
+The end result looks like this:
+
+![alt text](image.png)
+
+Upon sending a request to this endpoint, NSwaggerMerge will merge into a single doc all OpenApi docs from services configured in appsettings (services must be running).
+
+#### Credits
+
+Building upon the following 2 tools:
+
+* [swagger-merge](https://github.com/jamesmcroft/swagger-merge)
+* [Noise.SwaggerMerge](hhttps://github.com/vtbmusic/Noise.SwaggerMerge)
