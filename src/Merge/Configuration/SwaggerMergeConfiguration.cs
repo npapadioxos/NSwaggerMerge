@@ -9,12 +9,12 @@ namespace NSwaggerMerge.Merge.Configuration;
 public class SwaggerMergeConfiguration
 {
     /// <summary>
-    /// Gets or sets the inputs for merging.
+    /// Inputs for merging.
     /// </summary>
     public IEnumerable<SwaggerInputConfiguration> Inputs { get; set; } = [];
 
     /// <summary>
-    /// Gets or sets the output merged Swagger document.
+    /// Output merged Swagger document.
     /// </summary>
     public SwaggerOutputConfiguration Output { get; set; } = new();
 }

@@ -6,12 +6,12 @@ namespace NSwaggerMerge.Merge.Configuration.Output;
 public class SwaggerOutputInfoConfiguration
 {
     /// <summary>
-    /// Gets or sets the title.
+    /// Merged document's title.
     /// </summary>
     public string? Title { get; set; }
 
     /// <summary>
-    /// Gets or sets the version.
+    /// Merged document's version.
     /// </summary>
     public string? Version { get; set; }
 }

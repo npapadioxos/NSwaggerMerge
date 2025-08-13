@@ -8,32 +8,32 @@ namespace NSwaggerMerge.Merge.Configuration.Output;
 public class SwaggerOutputConfiguration
 {
     /// <summary>
-    /// Gets or sets the host (name or IP) service the API for the output.
+    /// Host (name or IP) service the API for the output.
     /// </summary>
     public string Host { get; set; } = string.Empty;
 
     /// <summary>
-    /// Gets or sets the base path on which the API is served relative to the <see cref="Host"/>.
+    /// Base path relative to <see cref="Host"/> on which the API is served.
     /// </summary>
     public string? BasePath { get; set; }
 
     /// <summary>
-    /// Gets or sets the transfer protocol of the API.
+    /// Transfer protocol of the API.
     /// </summary>
     public List<string>? Schemes { get; set; }
 
     /// <summary>
-    /// Gets or sets the security scheme to be defined for the output.
+    /// Security scheme to be defined for the output.
     /// </summary>
     public SwaggerDocumentSecurityDefinitions? SecurityDefinitions { get; set; } = [];
 
     /// <summary>
-    /// Gets or sets the security options available in the output.
+    /// Ssecurity options available in the output.
     /// </summary>
     public List<SwaggerDocumentSecurityRequirement>? Security { get; set; } = [];
 
     /// <summary>
-    /// Gets or sets the configuration for the document's description.
+    /// Configuration for the document's description.
     /// </summary>
     public SwaggerOutputInfoConfiguration? Info { get; set; }
 }

@@ -4,6 +4,9 @@ using NSwaggerMerge.Swagger;
 
 namespace NSwaggerMerge.Merge;
 
+/// <summary>
+/// Provides helper methods for merging Swagger documents based on input configurations.
+/// </summary>
 public static partial class SwaggerMerger
 {
     private static void UpdateOutputPathsFromInput(SwaggerDocument? output, SwaggerInputConfiguration inputConfig, SwaggerDocument input)

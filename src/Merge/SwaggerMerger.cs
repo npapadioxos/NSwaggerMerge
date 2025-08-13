@@ -6,6 +6,11 @@ namespace NSwaggerMerge.Merge;
 
 public static partial class SwaggerMerger
 {
+    /// <summary>
+    /// Merges multiple Swagger documents into a single Swagger document based on the provided configuration.
+    /// </summary>
+    /// <param name="config"></param>
+    /// <returns></returns>
     public static async Task<string> MergeAsync(SwaggerMergeConfiguration config)
     {
         SwaggerDocument output = new()

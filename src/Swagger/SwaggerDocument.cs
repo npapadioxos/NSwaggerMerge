@@ -8,36 +8,36 @@ using System.Runtime.Serialization;
 namespace NSwaggerMerge.Swagger;
 
 /// <summary>
-/// Defines the detail of a Swagger document.
+/// Defines the details of a Swagger document.
 /// </summary>
 public class SwaggerDocument
 {
     /// <summary>
-    /// Gets or sets the Swagger specification version.
+    /// OpenApi specification version.
     /// </summary>
     [JsonProperty("openapi", NullValueHandling = NullValueHandling.Ignore)]
     public string OpenApiVersion { get; set; } = "3.0.1";
 
     /// <summary>
-    /// Gets or sets the metadata about the API.
+    /// Metadata about the API.
     /// </summary>
     [JsonProperty("info", NullValueHandling = NullValueHandling.Ignore)]
     public SwaggerDocumentInfo Info { get; set; } = new();
 
     /// <summary>
-    /// Gets or sets the host (name or IP) serving the API.
+    /// Host (name or IP) serving the API.
     /// </summary>
     [JsonProperty("host", NullValueHandling = NullValueHandling.Ignore)]
     public string? Host { get; set; }
 
     /// <summary>
-    /// Gets or sets the base path on which the API is served, which is relative to the host.
+    /// Base path, relative to the host, on which the API is served.
     /// </summary>
     [JsonProperty("basePath", NullValueHandling = NullValueHandling.Ignore)]
     public string? BasePath { get; set; }
 
     /// <summary>
-    /// Gets or sets the transfer protocol of the API.
+    /// Transfer protocol of the API.
     /// </summary>
     [JsonProperty("schemas", NullValueHandling = NullValueHandling.Ignore)]
     public List<string>? Schemes { get; set; }
@@ -46,31 +46,31 @@ public class SwaggerDocument
     public SwaggerDocumentComponents? Components { get; set; } = new();
 
     /// <summary>
-    /// Gets or sets a list of MIME types the APIs can produce.
+    /// MIME types the APIs can produce.
     /// </summary>
     [JsonProperty("produces", NullValueHandling = NullValueHandling.Ignore)]
     public List<string>? Produces { get; set; }
 
     /// <summary>
-    /// Gets or sets the available paths and operations for the API.
+    /// Available paths and operations for the API.
     /// </summary>
     [JsonProperty("paths", NullValueHandling = NullValueHandling.Ignore)]
     public SwaggerDocumentPaths? Paths { get; set; } = [];
 
     /// <summary>
-    /// Gets or sets the parameters to be reused across operations.
+    /// Parameters to be reused across operations.
     /// </summary>
     [JsonProperty("parameters", NullValueHandling = NullValueHandling.Ignore)]
     public Dictionary<string, SwaggerDocumentProperty>? Parameters { get; set; } = [];
 
     /// <summary>
-    /// Gets or sets the security options available in the Swagger document.
+    /// Security options available in the Swagger document.
     /// </summary>
     [JsonProperty("security", NullValueHandling = NullValueHandling.Ignore)]
     public List<SwaggerDocumentSecurityRequirement>? Security { get; set; } = [];
 
     /// <summary>
-    /// Gets or sets the additional properties that are not covered by the defined Swagger properties.
+    /// Properties that are not covered by the defined Swagger properties.
     /// </summary>
     [JsonIgnore]
     public Dictionary<string, SwaggerDocumentProperty>? AdditionalProperties { get; set; }
@@ -135,55 +135,55 @@ public class SwaggerDocumentSecurityDefinitions : Dictionary<string, SwaggerDocu
 public class SwaggerDocumentSecurityScheme
 {
     /// <summary>
-    /// Gets or sets the type of security scheme.
+    /// Type of security scheme.
     /// </summary>
     [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
     public string? Type { get; set; }
 
     /// <summary>
-    /// Gets or sets a short description of the security scheme.
+    /// Short description of the security scheme.
     /// </summary>
     [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
     public string? Description { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of the header or query parameter to be used.
+    /// Name of the header or query parameter to be used.
     /// </summary>
     [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
     public string? Name { get; set; }
 
     /// <summary>
-    /// Gets or sets the location of the API key.
+    /// Location of the API key.
     /// </summary>
     [JsonProperty("in", NullValueHandling = NullValueHandling.Ignore)]
     public string? In { get; set; }
 
     /// <summary>
-    /// Gets or sets the flow used by the OAuth2 security scheme.
+    /// OAuth2 flow.
     /// </summary>
     [JsonProperty("flow", NullValueHandling = NullValueHandling.Ignore)]
     public string? Flow { get; set; }
 
     /// <summary>
-    /// Gets or sets the authorization URL to be used for this flow.
+    /// Authorization URL to be used for this flow.
     /// </summary>
     [JsonProperty("authorizationUrl", NullValueHandling = NullValueHandling.Ignore)]
     public string? AuthorizationUrl { get; set; }
 
     /// <summary>
-    /// Gets or sets the token URL to be used for this flow.
+    /// Token URL to be used for this flow.
     /// </summary>
     [JsonProperty("tokenUrl", NullValueHandling = NullValueHandling.Ignore)]
     public string? TokenUrl { get; set; }
 
     /// <summary>
-    /// Gets or sets the available scopes for the OAuth2 security scheme.
+    /// Available scopes for the OAuth2 security scheme.
     /// </summary>
     [JsonProperty("scopes", NullValueHandling = NullValueHandling.Ignore)]
     public SwaggerDocumentScopes? Scopes { get; set; }
 
     /// <summary>
-    /// Gets or sets the additional properties that are not covered by the defined Swagger properties.
+    /// Properties that are not covered by the defined Swagger properties.
     /// </summary>
     [JsonIgnore]
     public Dictionary<string, SwaggerDocumentProperty>? AdditionalProperties { get; set; }
@@ -258,13 +258,13 @@ public class SwaggerDocumentDefinitions : Dictionary<string, SwaggerDocumentProp
 public class SwaggerDocumentInfo
 {
     /// <summary>
-    /// Gets or sets the title of the API.
+    /// API Title.
     /// </summary>
     [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
     public string Title { get; set; }
 
     /// <summary>
-    /// Gets or sets the version of the API.
+    /// API Version.
     /// </summary>
     [JsonProperty("version", NullValueHandling = NullValueHandling.Ignore)]
     public string Version { get; set; }
@@ -315,61 +315,61 @@ public class SwaggerDocumentPathItem : Dictionary<string, SwaggerDocumentOperati
 public class SwaggerDocumentOperation
 {
     /// <summary>
-    /// Gets or sets a list of tags for API documentation control.
+    /// List of tags for API documentation control.
     /// </summary>
     [JsonProperty("tags", NullValueHandling = NullValueHandling.Ignore)]
     public List<string> Tags { get; set; } = [];
 
     /// <summary>
-    /// Gets or sets a short summary of what the operation does.
+    /// Short summary of what the operation does.
     /// </summary>
     [JsonProperty("summary", NullValueHandling = NullValueHandling.Ignore)]
     public string? Summary { get; set; }
 
     /// <summary>
-    /// Gets or sets a verbose explanation of the operation behavior.
+    /// Verbose explanation of the operation behavior.
     /// </summary>
     [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore)]
     public string? Description { get; set; }
 
     /// <summary>
-    /// Gets or sets the unique string used to identify the operation.
+    /// Unique string used to identify the operation.
     /// </summary>
     [JsonProperty("operationId", NullValueHandling = NullValueHandling.Ignore)]
     public string? OperationId { get; set; }
 
     /// <summary>
-    /// Gets or sets a list of MIME types the APIs can produce.
+    /// List of MIME types the APIs can produce.
     /// </summary>
     [JsonProperty("produces", NullValueHandling = NullValueHandling.Ignore)]
     public List<string>? Produces { get; set; }
 
     /// <summary>
-    /// Gets or sets a list of parameters that are applicable for this operation.
+    /// List of parameters that are applicable for this operation.
     /// </summary>
     [JsonProperty("parameters", NullValueHandling = NullValueHandling.Ignore)]
     public List<SwaggerDocumentProperty>? Parameters { get; set; }
 
     /// <summary>
-    /// Gets or sets the list of possible responses as they are returned from executing this operation.
+    /// List of possible responses as they are returned from executing this operation.
     /// </summary>
     [JsonProperty("responses", NullValueHandling = NullValueHandling.Ignore)]
     public Dictionary<string, SwaggerDocumentProperty>? Responses { get; set; }
 
     /// <summary>
-    /// Gets or sets the transfer protocol of the API.
+    /// Transfer protocol of the API.
     /// </summary>
     [JsonProperty("schemes", NullValueHandling = NullValueHandling.Ignore)]
     public List<string>? Schemes { get; set; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether this operation is deprecated.
+    /// Value indicating whether this operation is deprecated.
     /// </summary>
     [JsonProperty("deprecated", NullValueHandling = NullValueHandling.Ignore)]
     public bool Deprecated { get; set; }
 
     /// <summary>
-    /// Gets or sets the additional properties that are not covered by the defined Swagger properties.
+    /// Properties that are not covered by the defined Swagger properties.
     /// </summary>
     [JsonIgnore]
     public Dictionary<string, SwaggerDocumentProperty>? AdditionalProperties { get; set; }
@@ -424,31 +424,31 @@ public class SwaggerDocumentOperation
 public class SwaggerDocumentProperty
 {
     /// <summary>
-    /// Gets or sets the reference string to a definition.
+    /// Reference string to a definition.
     /// </summary>
     [JsonProperty("$ref", NullValueHandling = NullValueHandling.Ignore)]
     public string? Reference { get; set; }
 
     /// <summary>
-    /// Gets or sets a definition of the parameter structure.
+    /// Definition of the parameter structure.
     /// </summary>
     [JsonProperty("schema", NullValueHandling = NullValueHandling.Ignore)]
     public SwaggerDocumentProperty? Schema { get; set; }
 
     /// <summary>
-    /// Gets or sets the type of items in the array if the type is <b>array</b>.
+    /// Type of items in the array if the type is <b>array</b>.
     /// </summary>
     [JsonProperty("items", NullValueHandling = NullValueHandling.Ignore)]
     public SwaggerDocumentProperty? Items { get; set; }
 
     /// <summary>
-    /// Gets or sets the properties of an item.
+    /// Properties of an item.
     /// </summary>
     [JsonProperty("properties", NullValueHandling = NullValueHandling.Ignore)]
     public Dictionary<string, SwaggerDocumentProperty>? Properties { get; set; }
 
     /// <summary>
-    /// Gets or sets the additional properties that are not covered by the defined Swagger properties.
+    /// Properties that are not covered by the defined Swagger properties.
     /// </summary>
     [JsonIgnore]
     public Dictionary<string, SwaggerDocumentProperty>? AdditionalProperties { get; set; }

@@ -111,4 +111,4 @@ Upon sending a request to this endpoint, NSwaggerMerge will merge into a single 
 Building upon the following 2 tools:
 
 * [swagger-merge](https://github.com/jamesmcroft/swagger-merge)
-* [Noise.SwaggerMerge](hhttps://github.com/vtbmusic/Noise.SwaggerMerge)
+* [Noise.SwaggerMerge](https://github.com/vtbmusic/Noise.SwaggerMerge)

@@ -1,7 +1,7 @@
 namespace NSwaggerMerge.Merge.Exceptions;
 
 /// <summary>
-/// Defines an exception thrown when an error occurs with the Swagger merge tool.
+/// Custom Exception thrown when error occurs within the Swagger merge tool.
 /// </summary>
 public class SwaggerMergeException : Exception
 {
