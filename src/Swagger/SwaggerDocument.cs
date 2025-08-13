@@ -58,22 +58,10 @@ public class SwaggerDocument
     public SwaggerDocumentPaths? Paths { get; set; } = [];
 
     /// <summary>
-    /// Gets or sets the data types produced and consumed by operations.
-    /// </summary>
-    [JsonProperty("definitions", NullValueHandling = NullValueHandling.Ignore)]
-    public SwaggerDocumentDefinitions? Definitions { get; set; } = [];
-
-    /// <summary>
     /// Gets or sets the parameters to be reused across operations.
     /// </summary>
     [JsonProperty("parameters", NullValueHandling = NullValueHandling.Ignore)]
     public Dictionary<string, SwaggerDocumentProperty>? Parameters { get; set; } = [];
-
-    /// <summary>
-    /// Gets or sets the security scheme to be reused across the specification.
-    /// </summary>
-    [JsonProperty("securityDefinitions", NullValueHandling = NullValueHandling.Ignore)]
-    public SwaggerDocumentSecurityDefinitions? SecurityDefinitions { get; set; } = [];
 
     /// <summary>
     /// Gets or sets the security options available in the Swagger document.
@@ -305,18 +293,10 @@ public class SwaggerDocumentSchemeItem
     public bool? AdditionalProperties { get; set; }
 
     [JsonProperty("properties", NullValueHandling = NullValueHandling.Ignore)]
-    public SwaggerDocumentProperties? Properties { get; set; }
+    public Dictionary<string, SwaggerDocumentProperty>? Properties { get; set; }
 
     [JsonProperty("required", NullValueHandling = NullValueHandling.Ignore)]
     public string[]? Required { get; set; }
-}
-
-public class SwaggerDocumentProperties : Dictionary<string, SwaggerDocumentPropertiesItem>;
-
-public class SwaggerDocumentPropertiesItem
-{
-    [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
-    public string? Type { get; set; }
 }
 
 /// <summary>
