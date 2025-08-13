@@ -17,9 +17,15 @@
     <Authors>Nick Papadiochos</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeSymbols>True</IncludeSymbols>
+    <PackageIcon>icon.png</PackageIcon>
+    <RepositoryUrl>https://github.com/npapadioxos/NSwaggerMerge.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\assets\img\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
