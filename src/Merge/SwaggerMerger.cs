@@ -35,10 +35,10 @@ public static partial class SwaggerMerger
         if (output == null)
             return;
 
-        output.Info.Title = outputTitle;
         output.Schemes = config.Output.Schemes ?? [];
         output.Security = config.Output.Security ?? [];
+
+        output.Info.Title = outputTitle;
         output.Info.Version = config.Output.Info?.Version ?? "1.0";
-        output.SecurityDefinitions = config.Output.SecurityDefinitions ?? [];
     }
 }

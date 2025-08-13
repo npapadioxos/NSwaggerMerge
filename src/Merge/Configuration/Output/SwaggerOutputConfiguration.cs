@@ -8,11 +8,6 @@ namespace NSwaggerMerge.Merge.Configuration.Output;
 public class SwaggerOutputConfiguration
 {
     /// <summary>
-    /// Gets or sets the file path of the output merged Swagger document.
-    /// </summary>
-    public string File { get; set; } = string.Empty;
-
-    /// <summary>
     /// Gets or sets the host (name or IP) service the API for the output.
     /// </summary>
     public string Host { get; set; } = string.Empty;
