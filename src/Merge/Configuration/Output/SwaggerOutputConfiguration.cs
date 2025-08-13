@@ -3,7 +3,7 @@ using NSwaggerMerge.Swagger;
 namespace NSwaggerMerge.Merge.Configuration.Output;
 
 /// <summary>
-/// Defines the configuration for a Swagger document output.
+/// Configure Swagger document output.
 /// </summary>
 public class SwaggerOutputConfiguration
 {

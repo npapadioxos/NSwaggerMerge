@@ -1,17 +1,17 @@
 namespace NSwaggerMerge.Merge.Configuration.Input;
 
 /// <summary>
-/// Defines the configuration for modifying a Swagger document's description.
+/// Modify a Swagger doc description.
 /// </summary>
 public class SwaggerInputInfoConfiguration
 {
     /// <summary>
-    /// Gets or sets a value indicating whether to append the document title.
+    /// Append document title option.
     /// </summary>
     public bool Append { get; set; }
 
     /// <summary>
-    /// Gets or sets the title to append.
+    /// Doc Title to append.
     /// </summary>
     /// <remarks>
     /// If not set, the Swagger document's title will be used.
