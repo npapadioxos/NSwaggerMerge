@@ -13,7 +13,7 @@
     <Copyright>Nick Papadiochos</Copyright>
     <Company>Nick Papadiochos</Company>
     <Description>NSwaggerMerge - Create unified swagger doc aggregated from multiple microservices.</Description>
-    <PackageReleaseNotes>Organize Swagger Document Classes</PackageReleaseNotes>
+    <PackageReleaseNotes>Update Project Dependencies</PackageReleaseNotes>
     <Authors>Nick Papadiochos</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeSymbols>True</IncludeSymbols>
