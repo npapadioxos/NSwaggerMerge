@@ -25,7 +25,7 @@ public class SwaggerOutputConfiguration
     /// <summary>
     /// Security scheme to be defined for the output.
     /// </summary>
-    public SwaggerDocumentSecurityDefinitions? SecurityDefinitions { get; set; } = [];
+    public Dictionary<string, SwaggerDocumentSecurityScheme>? SecurityDefinitions { get; set; } = [];
 
     /// <summary>
     /// Ssecurity options available in the output.
