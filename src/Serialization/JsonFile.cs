@@ -11,6 +11,13 @@ internal static class JsonFile
         MetadataPropertyHandling = MetadataPropertyHandling.Ignore
     };
 
+    /// <summary>
+    /// Loads a remote OpenApi JSON file for merging.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="httpPath"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     public static async Task<T> LoadRemoteFileAsync<T>(string httpPath) where T : class
     {
         using HttpClient client = new();
